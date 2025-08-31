@@ -7,7 +7,7 @@ State = namedtuple("State", ["B", "W", "G", "C"])
 LEFT, RIGHT = "L", "R"
 
 def initialState():
-    return State(LEFT, LEFT, LEFT, LEFT)
+    return State(RIGHT, LEFT, LEFT, RIGHT)
 
 def goalState():
     return State(RIGHT, RIGHT, RIGHT, RIGHT)

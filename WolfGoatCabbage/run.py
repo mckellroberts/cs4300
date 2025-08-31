@@ -5,12 +5,12 @@ from searchCore import bfs, ids
 
 def run(domain, algo):
     start = initialState()
-    goal_test = lambda s: s == goalState()
+    goalTest = lambda s: s == goalState()
 
     if algo == "bfs":
-        path, stats = bfs(start, goal_test, successors)
+        path, stats = bfs(start, goalTest, successors)
     elif algo == "ids":
-        path, stats = ids(start, goal_test, successors)
+        path, stats = ids(start, goalTest, successors)
     else:
         raise ValueError("Unknown algorithm")
 

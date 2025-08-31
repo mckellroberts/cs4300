@@ -56,7 +56,7 @@ def ids(start, goal_test, successors, max_depth=50):
     stats = SearchStats()
     for depth in range(max_depth + 1):
         result, found = dls(start, goal_test, successors, depth, [], stats, set())
-        stats.max_frontier = max(stats.max_frontier, len(stats.__dict__))
+        stats.maxFrontier = max(stats.maxFrontier, len(stats.__dict__))
         if result is not None:
             return result, stats
     return None, stats
