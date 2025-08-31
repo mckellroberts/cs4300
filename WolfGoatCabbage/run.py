@@ -1,6 +1,6 @@
 # run.py
 import argparse
-from wgc import initialState, goalState, successors
+from wgc import initialState, goalState, successors, formatState
 from searchCore import bfs, ids
 
 def run(domain, algo):
@@ -20,11 +20,11 @@ def run(domain, algo):
         return
 
     print(f"Solution cost: {len(path)} | Depth: {len(path)}")
-    print(f"Nodes generated: {stats.generated} | Nodes expanded: {stats.expanded} | Max frontier: {stats.max_frontier}")
+    print(f"Nodes generated: {stats.generated} | Nodes expanded: {stats.expanded} | Max frontier: {stats.maxFrontier}")
     print("Path:")
     current = start
     for i, (action, state) in enumerate(path, 1):
-        print(f"  {i}) {action:12} {current} -> {state}")
+        print(f"  {i}) {action:12} {formatState(current)} -> {formatState(state)}")
         current = state
 
 if __name__ == "__main__":

@@ -54,3 +54,7 @@ def successors(state: State):
             moves.append(("Take Cabbage", newState))
 
     return moves
+
+def formatState(state):
+    """Return state as a compact tuple-like string, e.g. (L,L,R,L)."""
+    return f"({state.B}, {state.W}, {state.G}, {state.C})"
