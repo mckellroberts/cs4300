@@ -1,13 +1,44 @@
-This file contains your A* and UCS implementations, using heapq for the priority queue.
+import heapq
 
-Key elements:
+def AStar(threeByThree, heuristicVariant="h0"):
+    initial = threeByThree.InitialState()
+    frontier = [(threeByThree.Heuristic(initial, heuristicVariant), 0, initial, [])]
+    bestG = {initial: 0} #Best path based on cost, if cost is all uniform, than first quickest path
+    explored = set()
 
-frontier: min-heap storing (f, g, state, path)
+    nodesExpanded = 0
+    nodesGenerated = 0
+    maxFrontierSize = 1
 
-best_g: dict tracking best known cost for each visited state
+    while frontier:
+        f, g, state, path = heapq.heappop(frontier)
 
-expanded_count, generated_count, max_frontier_size for metrics
+        if threeByThree.GoalTest(state):
+            return {
+                "solution": path,
+                "cost": g,
+                "depth": len(path),
+                "nodesExpanded": nodesExpanded,
+                "nodesGenerated": nodesGenerated,
+                "maxFrontierSize": maxFrontierSize,
+            }
 
-AStar(problem, heuristic_variant)
+        if state in explored:
+            continue
+        explored.add(state)
+        nodesExpanded += 1
 
-UniformCostSearch(problem) (A* with h0 = 0)
+        #Expands tree based on available actions
+        for action in threeByThree.Actions(state):
+            nextState = threeByThree.Transition(state, action)
+            newG = g + threeByThree.StepCost(state, action, nextState)
+            newF = newG + threeByThree.Heuristic(nextState,V)
+
+            #If new path isn't more cost effective, cut out
+            if nextState not in bestG or newG < bestG[nextState]:
+                bestG[nextState] = newG
+                nodes_generated += 1
+                heapq.heappush(frontier, (newF, newG, nextState, path + [action]))
+                maxFrontierSize = max(maxFrontierSize, len(frontier))
+
+    return None  # failure
