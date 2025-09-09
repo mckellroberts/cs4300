@@ -8,9 +8,11 @@ class EightPuzzle:
                      4, 5, 6,
                      7, 8, 0)  # solved state
 
+    #Random list of 0-8
     def InitialState(self) -> Tuple[int]:
         return self.initial
 
+    #Adds legal actions, no going outside of the 3x3
     def Actions(self, state: Tuple[int]) -> List[str]:
         actions = []
         index = state.index(0)  # blank
@@ -21,24 +23,27 @@ class EightPuzzle:
         if col < 2: actions.append("Right")
         return actions
 
+    #Switches the tiles/numbers and makes new state
     def Transition(self, state: Tuple[int], action: str) -> Tuple[int]:
         index = state.index(0)
         row, col = divmod(index, 3)
-        swap_index = index
+        swapIndex = index
 
-        if action == "Up": swap_index = (row - 1) * 3 + col
-        if action == "Down": swap_index = (row + 1) * 3 + col
-        if action == "Left": swap_index = row * 3 + (col - 1)
-        if action == "Right": swap_index = row * 3 + (col + 1)
+        if action == "Up": swapIndex = (row - 1) * 3 + col
+        if action == "Down": swapIndex = (row + 1) * 3 + col
+        if action == "Left": swapIndex = row * 3 + (col - 1)
+        if action == "Right": swapIndex = row * 3 + (col + 1)
 
-        new_state = list(state)
-        new_state[index], new_state[swap_index] = new_state[swap_index], new_state[index]
-        return tuple(new_state)
+        newState = list(state)
+        newState[index], newState[swapIndex] = newState[swapIndex], newState[index]
+        return tuple(newState)
 
+    #Checks to see if Goal State is achieved.
     def GoalTest(self, state: Tuple[int]) -> bool:
         return state == self.goal
 
-    def StepCost(self, state: Tuple[int], action: str, next_state: Tuple[int]) -> int:
+    #Each step will only ever cost 1.
+    def StepCost(self, state: Tuple[int], action: str, nextState: Tuple[int]) -> int:
         return 1
 
     # --- Heuristics ---
@@ -51,9 +56,9 @@ class EightPuzzle:
             dist = 0
             for i, v in enumerate(state):
                 if v == 0: continue
-                goal_row, goal_col = divmod(self.goal.index(v), 3)
-                cur_row, cur_col = divmod(i, 3)
-                dist += abs(goal_row - cur_row) + abs(goal_col - cur_col)
+                goalRow, goalCol = divmod(self.goal.index(v), 3)
+                curRow, curCol = divmod(i, 3)
+                dist += abs(goalRow - curRow) + abs(goalCol - curCol)
             return dist
         else:
             raise ValueError(f"Unknown heuristic: {variant}")
