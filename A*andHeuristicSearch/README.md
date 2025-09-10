@@ -1,17 +1,9 @@
-Explain:
+Terminal run command: python3 run.py
 
-Problem domain (why chosen).
+This code goes over the solution of the 8 puzzle using a Heuristic A* search.
 
-Definitions of InitialState, Actions, Transition, GoalTest, StepCost, Heuristics.
+puzzle.py defines the 8 puzzle's initial state, actions, transition states, goal states, and the cost of each move.
 
-Search algorithm implementation details.
+searchCore.py builds the A* search function and defines the different heuristic levels; h0, h1, h2, respectfully.
 
-Heuristic proofs/arguments:
-
-h0: trivial zero heuristic (UCS).
-
-h1: admissible + consistent (with reasoning).
-
-h2: either stronger admissible or an inadmissible exploratory heuristic.
-
-Results & metrics (nodes expanded, cost, depth, etc.).
+run.py passes in the initial state and gives the results of running A* Search at each Heuristic Level.

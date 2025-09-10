@@ -32,12 +32,12 @@ def AStar(threeByThree, heuristicVariant="h0"):
         for action in threeByThree.Actions(state):
             nextState = threeByThree.Transition(state, action)
             newG = g + threeByThree.StepCost(state, action, nextState)
-            newF = newG + threeByThree.Heuristic(nextState,V)
+            newF = newG + threeByThree.Heuristic(nextState, heuristicVariant)
 
-            #If new path isn't more cost effective, cut out
+            #If new path isn't more cost effective, cut off
             if nextState not in bestG or newG < bestG[nextState]:
                 bestG[nextState] = newG
-                nodes_generated += 1
+                nodesGenerated += 1
                 heapq.heappush(frontier, (newF, newG, nextState, path + [action]))
                 maxFrontierSize = max(maxFrontierSize, len(frontier))
 
