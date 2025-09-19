@@ -1,0 +1,30 @@
+NAME: Zebra Puzzle (3 Houses)
+DESC: 3-house variant of the Zebra Puzzle.
+
+VARS:
+  # Positions
+  PosRed: [0,1,2]
+  PosBlue: [0,1,2]
+  PosYellow: [0,1,2]
+  PosDog: [0,1,2]
+  PosCat: [0,1,2]
+  PosBird: [0,1,2]
+  PosJohn: [0,1,2]
+  PosSam: [0,1,2]
+  PosElla: [0,1,2]
+  PosLemonade: [0,1,2]
+  PosTea: [0,1,2]
+  PosCoffee: [0,1,2]
+
+CONS:
+  # Each house has a unique color, pet, owner, and beverage
+  # (Pos_0 links all attributes for house 0, etc.)
+  alldiff(PosRed, PosBlue, PosYellow)
+  alldiff(PosDog, PosCat, PosBird)
+  alldiff(PosJohn, PosSam, PosElla)
+  alldiff(PosLemonade, PosCoffee, PosTea)
+
+  # Initial State
+  eq(PosRed, PosDog)
+  eq(PosBlue, PosTea)
+  eq(PosJohn, PosYellow)

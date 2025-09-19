@@ -1,0 +1,69 @@
+NAME: Zebra Puzzle (5 Houses)
+DESC: Full 5-house Zebra Puzzle.
+
+VARS:
+  # Positions
+  PosRed: [0,1,2,3,4]
+  PosBlue: [0,1,2,3,4]
+  PosYellow: [0,1,2,3,4]
+  PosBlack: [0,1,2,3,4]
+  PosPink: [0,1,2,3,4]
+
+  PosDog: [0,1,2,3,4]
+  PosCat: [0,1,2,3,4]
+  PosBird: [0,1,2,3,4]
+  PosTurtle: [0,1,2,3,4]
+  PosUnicorn: [0,1,2,3,4]
+
+  PosJohn: [0,1,2,3,4]
+  PosSam: [0,1,2,3,4]
+  PosElla: [0,1,2,3,4]
+  PosCarl: [0,1,2,3,4]
+  PosRosaline: [0,1,2,3,4]
+
+  PosLemonade: [0,1,2,3,4]
+  PosWater: [0,1,2,3,4]
+  PosCoke: [0,1,2,3,4]
+  PosCoffee: [0,1,2,3,4]
+  PosTea: [0,1,2,3,4]
+
+  PosKnit: [0,1,2,3,4]
+  PosBaseball: [0,1,2,3,4]
+  PosDance: [0,1,2,3,4]
+  PosRead: [0,1,2,3,4]
+  PosHunt: [0,1,2,3,4]
+
+CONS:
+  # Each attribute type has a unique position
+  alldiff(PosRed, PosBlue, PosYellow, PosBlack, PosPink)
+  alldiff(PosDog, PosCat, PosBird, PosTurtle, PosUnicorn)
+  alldiff(PosJohn, PosSam, PosElla, PosCarl, PosRosaline)
+  alldiff(PosLemonade, PosWater, PosCoke, PosCoffee, PosTea)
+  alldiff(PosKnit, PosBaseball, PosDance, PosRead, PosHunt)
+
+  # Fact 1: The owner with the Red house has a Dog.
+  eq(PosRed, PosDog)
+  # Fact 2: The owner of the Blue house drinks Tea.
+  eq(PosBlue, PosTea)
+  # Fact 3: John owns the Yellow house.
+  eq(PosJohn, PosYellow)
+  # Fact 4: The owner with the Cat lives in the Pink house.
+  eq(PosCat, PosPink)
+  # Fact 7: The owner who loves to dance drinks Coke.
+  eq(PosDance, PosCoke)
+  # Fact 8: The owner of the Green house loves to Knit.
+  eq(PosGreen, PosKnit)
+  # Fact 9: The owner of the White house drinks Coffee.
+  eq(PosWhite, PosCoffee)
+  # Fact 10: The owner of the Green house is in the middle (Pos_2).
+  eq(PosGreen, 2)
+  # Fact 11: The owner of the Yellow house loves to read.
+  eq(PosYellow, PosRead)
+  # Fact 13: The owner who loves to Hunt lives in the last house (Pos_4).
+  eq(PosHunt, 4)
+  # Fact 14: The owner with the Turtle drinks Water.
+  eq(PosTurtle, PosWater)
+  # Fact 17: The owner with the Dog drinks Lemonade.
+  eq(PosDog, PosLemonade)
+  # Fact 19: The owner with the Unicorn drinks Coffee.
+  eq(PosUnicorn, PosCoffee)
